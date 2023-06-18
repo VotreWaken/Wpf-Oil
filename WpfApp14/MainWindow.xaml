@@ -1,0 +1,248 @@
+﻿<Window x:Class="WpfApp14.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp14"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600"
+        Closed="Window_Closed">
+    <Grid Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+            <Menu Height="23" Grid.Row="0">
+                <MenuItem  Header="Тема">
+                    <MenuItem Header="Світла" Click="ChangeLightTheme"></MenuItem>
+                    <MenuItem Header="Темна" Click="ChangeDarkTheme"></MenuItem>
+                </MenuItem>
+            </Menu>
+
+
+        <Grid Grid.Row="1" Name="MainPart">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Автозаправка" Height="250" Width="280" Foreground="Blue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="65"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel HorizontalAlignment="Left" Width="270" Orientation="Horizontal" Grid.Row="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Бензин" Width="50" Height="30" Margin="10" Grid.Row="0"></Label>
+                                <ComboBox x:Name="CBFuel"  Width="150" Height="20" Grid.Row="0" SelectionChanged="CBFuel_SelectionChanged" ></ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <Label Content="Ціна" Width="50" Grid.Row="1" Height="30" Margin="10"></Label>
+                                <TextBox x:Name="TBPrice" Height="25" Width="150"></TextBox>
+                                <Label Content="грн." Height="30" Margin="10"></Label>
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+
+
+
+                    <StackPanel Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <GroupBox Height="60" Width="110">
+                                <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                                    <RadioButton Content="Кількість" x:Name="RBCount" IsChecked="True" Margin="5" Click="RBCount_Click"></RadioButton>
+                                    <RadioButton Content="Сума" x:Name="RBSum" Margin="5" Click="RBCount_Click"></RadioButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom">
+                                    <TextBox x:Name="TBCount" Width="70" Height="20" TextChanged="TBCount_TextChanged"></TextBox>
+                                    <Label Height="30">л.</Label>
+                                </StackPanel>
+
+
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top">
+                                    <TextBox x:Name="TBSum" Width="70" Height="20" TextChanged="TBCount_TextChanged"></TextBox>
+                                    <Label Height="30">грн.</Label>
+                                </StackPanel>
+
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2">
+                        <GroupBox Header="До сплати" Height="80">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label x:Name="FuelPrice" FontSize="30">0,00</Label>
+                                <Label x:Name="labelAmount" VerticalAlignment="Bottom">грн.</Label>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+
+
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Міні-кафе" Height="250" Width="280" Grid.Column="2"  Foreground="Blue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label Width="75" Margin="2">Цена</Label>
+                        <Label Margin="2">Количество</Label>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <CheckBox x:Name="CBHotDog" Click="CBHotDog_Click">Хот-дог</CheckBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBHotDogPrice" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBHotDogCount" IsEnabled="False" TextChanged="TBColaCount_TextChanged"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <CheckBox x:Name="CBHamburger" Click="CBHotDog_Click">Гамбургер</CheckBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBHamburgerPrice" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBHamburgerCount" IsEnabled="False" TextChanged="TBColaCount_TextChanged"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <CheckBox  x:Name="CBPotato" Click="CBHotDog_Click">Картопля-Фрі</CheckBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBPotatoPrice" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBPotatoCount" IsEnabled="False" TextChanged="TBColaCount_TextChanged"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <CheckBox x:Name="CBCola" Click="CBHotDog_Click">Кока-кола</CheckBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBColaPrice" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                            <TextBox Width="50" Height="20" x:Name="TBColaCount" IsEnabled="False" TextChanged="TBColaCount_TextChanged"></TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <GroupBox Grid.Row="5" Height="80" Header="До сплати">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label x:Name="CafePrice" FontSize="30">0,00</Label>
+                            <Label VerticalAlignment="Bottom">грн.</Label>
+                        </StackPanel>
+                    </GroupBox>
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <DockPanel Grid.Row="2">
+            <GroupBox Foreground="Blue" Grid.Row="2" Height="110" Width="580" Header="Всього до сплати" DockPanel.Dock="Top">
+
+                <Grid Name="DownPart">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Height="40" Margin="0,0,10,0" Click="ChangeLightTheme">Світла тема</Button>
+                        <Button Height="40" Click="ChangeDarkTheme" >Темна тема</Button>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="CalculateBtn" Height="30" Width="130" Click="CalculateBtn_Click"
+                              >Всього до сплати</Button>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label x:Name="TotalPrice" FontSize="30">0,00</Label>
+                        <Label VerticalAlignment="Bottom">грн.</Label>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+        </DockPanel>
+
+    </Grid>
+</Window>
